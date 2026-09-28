@@ -1,720 +1,585 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pre-Test | Visualizing the Invisible</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <title>PRE-EXHIBITION SURVEY</title>
 
-body{
-  font-family:Arial,"Noto Sans Thai",sans-serif;
-  background:#070707;
-  color:#fff;
-  min-height:100vh;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.page{
-  min-height:100vh;
-  padding:50px 20px;
-  background:
-    radial-gradient(
-      circle at 50% 10%,
-      rgba(130,130,130,.16),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #050505,
-      #171717 55%,
-      #050505
-    );
-}
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-.container{
-  max-width:820px;
-  margin:auto;
-}
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-.header{
-  text-align:center;
-  margin-bottom:42px;
-}
+    body{
+      background:#050505;
+      color:#fff;
+      font-family:"Prompt","Noto Sans Thai",sans-serif;
+      min-height:100vh;
+      padding:40px 20px;
+    }
 
-.kicker{
-  font-size:11px;
-  letter-spacing:4px;
-  color:#aaa;
-  margin-bottom:18px;
-}
+    .container{
+      width:100%;
+      max-width:850px;
+      margin:auto;
+    }
 
-h1{
-  font-family:"Prompt","Noto Sans Thai",sans-serif;
-  font-size:clamp(32px,6vw,58px);
-  font-weight:500;
-  letter-spacing:0;
-  line-height:1.25;
-  margin-bottom:14px;
-}
+    .kicker{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:13px;
+      letter-spacing:3px;
+      color:#888;
+      margin-bottom:20px;
+    }
 
-.subtitle{
-  color:#aaa;
-  line-height:1.8;
-  font-size:14px;
-}
+    h1{
+      font-family:"Prompt","Noto Sans Thai",sans-serif;
+      font-size:clamp(32px,6vw,58px);
+      font-weight:500;
+      letter-spacing:0;
+      line-height:1.25;
+      margin-bottom:14px;
+    }
 
-.card{
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:16px;
-  padding:30px;
-  margin-bottom:18px;
-  backdrop-filter:blur(10px);
-}
+    .intro{
+      color:#aaa;
+      font-size:15px;
+      line-height:1.8;
+      margin-bottom:45px;
+    }
 
-.card h2{
-  font-size:17px;
-  font-weight:500;
-  margin-bottom:22px;
-}
+    .question{
+      border-top:1px solid #292929;
+      padding:28px 0;
+    }
 
-.question{
-  margin-bottom:30px;
-}
+    .question:last-of-type{
+      border-bottom:1px solid #292929;
+    }
 
-.question:last-child{
-  margin-bottom:0;
-}
+    .number{
+      color:#777;
+      font-family:"Space Grotesk",sans-serif;
+      font-size:13px;
+      margin-bottom:8px;
+    }
 
-.q-title{
-  font-size:15px;
-  line-height:1.7;
-  margin-bottom:14px;
-}
+    .question h2{
+      font-size:18px;
+      font-weight:400;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
 
-.option{
-  display:block;
-  padding:13px 15px;
-  margin:8px 0;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;
-  color:#ddd;
-  cursor:pointer;
-  transition:.2s;
-  background:rgba(255,255,255,.025);
-}
+    .option{
+      display:block;
+      margin:9px 0;
+      padding:13px 16px;
+      border:1px solid #292929;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.2s;
+      color:#ccc;
+      font-size:15px;
+    }
 
-.option:hover{
-  background:rgba(255,255,255,.08);
-  border-color:rgba(255,255,255,.3);
-}
+    .option:hover{
+      border-color:#666;
+      background:#111;
+    }
 
-.option input{
-  margin-right:10px;
-}
+    .option input{
+      margin-right:10px;
+      accent-color:#fff;
+    }
 
-.submit{
-  width:100%;
-  padding:17px;
-  border:1px solid #aaa;
-  background:#fff;
-  color:#080808;
-  border-radius:10px;
-  font-size:13px;
-  letter-spacing:2px;
-  cursor:pointer;
-  transition:.25s;
-}
+    .option:has(input:checked){
+      border-color:#fff;
+      background:#151515;
+      color:#fff;
+    }
 
-.submit:hover{
-  background:#ddd;
-  transform:translateY(-2px);
-}
+    .submit{
+      width:100%;
+      margin-top:35px;
+      padding:18px;
+      border:none;
+      border-radius:8px;
+      background:#fff;
+      color:#000;
+      font-family:"Space Grotesk","Prompt",sans-serif;
+      font-size:14px;
+      letter-spacing:2px;
+      cursor:pointer;
+      transition:0.2s;
+    }
 
-.submit:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none;
-}
+    .submit:hover{
+      background:#ddd;
+    }
 
-.note{
-  text-align:center;
-  color:#777;
-  font-size:11px;
-  margin-top:18px;
-  line-height:1.7;
-}
+    .submit:disabled{
+      opacity:0.5;
+      cursor:not-allowed;
+    }
 
-#result{
-  display:none;
-  text-align:center;
-  padding:25px;
-  margin-top:20px;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:12px;
-  background:rgba(255,255,255,.05);
-  line-height:1.8;
-}
+    #result{
+      display:none;
+      margin-top:30px;
+      padding:25px;
+      border:1px solid #333;
+      border-radius:8px;
+      text-align:center;
+      color:#ccc;
+      line-height:1.8;
+    }
 
-@media(max-width:600px){
-  .page{
-    padding:35px 14px;
-  }
+    @media(max-width:600px){
+      body{
+        padding:30px 16px;
+      }
 
-  .card{
-    padding:22px;
-  }
-}
-</style>
+      .question h2{
+        font-size:16px;
+      }
+
+      .option{
+        font-size:14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<main class="page">
-
 <div class="container">
 
-<header class="header">
+  <div class="kicker">PRE-EXHIBITION SURVEY</div>
 
-  <div class="kicker">
-    VISUALIZING THE INVISIBLE
-  </div>
+  <h1>แบบประเมินก่อนเข้าชมนิทรรศการ</h1>
 
-  <h1>
-    แบบสอบถามก่อนเข้าชมนิทรรศการ
-  </h1>
-
-  <p class="subtitle">
-    Pre-Test<br>
-    แบบสอบถามเพื่อสำรวจความรู้และความเข้าใจเกี่ยวกับควัน
-    และผลกระทบต่อระบบทางเดินหายใจก่อนเข้าชมนิทรรศการ
+  <p class="intro">
+    แบบประเมินนี้จัดทำขึ้นเพื่อสำรวจความรู้ ความเข้าใจ
+    และประสบการณ์ของผู้เข้าชมก่อนเข้าร่วมนิทรรศการ
+    <br>
+    <strong>VISUALIZING THE INVISIBLE</strong>
   </p>
 
-</header>
+
+  <form id="pretest">
+
+    <!-- Q1 -->
+    <div class="question">
+
+      <div class="number">01</div>
+
+      <h2>ช่วงอายุของคุณ</h2>
+
+      <label class="option">
+        <input type="radio" name="age" value="ต่ำกว่า 18 ปี">
+        ต่ำกว่า 18 ปี
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age" value="18–22 ปี">
+        18–22 ปี
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age" value="23–30 ปี">
+        23–30 ปี
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age" value="31 ปีขึ้นไป">
+        31 ปีขึ้นไป
+      </label>
+
+    </div>
 
 
-<form id="pretest">
+    <!-- Q2 -->
+    <div class="question">
+
+      <div class="number">02</div>
+
+      <h2>
+        คุณคิดว่าควันบุหรี่มีผลต่อระบบทางเดินหายใจหรือไม่?
+      </h2>
+
+      <label class="option">
+        <input type="radio" name="q2" value="มีผล">
+        มีผล
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q2" value="ไม่มีผล">
+        ไม่มีผล
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q2" value="ไม่แน่ใจ">
+        ไม่แน่ใจ
+      </label>
+
+    </div>
 
 
-<!-- =========================
-     ส่วนที่ 1
-========================= -->
+    <!-- Q3 -->
+    <div class="question">
 
-<section class="card">
+      <div class="number">03</div>
 
-  <h2>
-    ส่วนที่ 1 · ข้อมูลทั่วไป
-  </h2>
+      <h2>
+        ส่วนใดของปอดเป็นบริเวณสำคัญในการแลกเปลี่ยนก๊าซออกซิเจนและคาร์บอนไดออกไซด์?
+      </h2>
 
-  <div class="question">
+      <label class="option">
+        <input
+          type="radio"
+          name="q3"
+          value="ถุงลมปอด (Alveoli)"
+        >
+        ถุงลมปอด (Alveoli)
+      </label>
 
-    <p class="q-title">
-      1. ช่วงอายุของคุณ
-    </p>
+      <label class="option">
+        <input
+          type="radio"
+          name="q3"
+          value="หลอดลมคอ (Trachea)"
+        >
+        หลอดลมคอ (Trachea)
+      </label>
 
-    <label class="option">
-      <input
-        type="radio"
-        name="age"
-        value="under18"
-      >
-      ต่ำกว่า 18 ปี
-    </label>
+      <label class="option">
+        <input
+          type="radio"
+          name="q3"
+          value="กะบังลม (Diaphragm)"
+        >
+        กะบังลม (Diaphragm)
+      </label>
 
-    <label class="option">
-      <input
-        type="radio"
-        name="age"
-        value="18-22"
-      >
-      18–22 ปี
-    </label>
+      <label class="option">
+        <input
+          type="radio"
+          name="q3"
+          value="ไม่แน่ใจ"
+        >
+        ไม่แน่ใจ
+      </label>
 
-    <label class="option">
-      <input
-        type="radio"
-        name="age"
-        value="23-30"
-      >
-      23–30 ปี
-    </label>
+    </div>
 
-    <label class="option">
-      <input
-        type="radio"
-        name="age"
-        value="31+"
-      >
-      31 ปีขึ้นไป
-    </label>
 
+    <!-- Q4 -->
+    <div class="question">
+
+      <div class="number">04</div>
+
+      <h2>
+        คุณคิดว่าบุหรี่ไฟฟ้าสามารถส่งผลกระทบต่อสุขภาพปอดได้หรือไม่?
+      </h2>
+
+      <label class="option">
+        <input type="radio" name="q4" value="ได้">
+        ได้
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q4" value="ไม่ได้">
+        ไม่ได้
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q4" value="ไม่แน่ใจ">
+        ไม่แน่ใจ
+      </label>
+
+    </div>
+
+
+    <!-- Q5 -->
+    <div class="question">
+
+      <div class="number">05</div>
+
+      <h2>
+        ก่อนเข้าชมนิทรรศการ
+        คุณมีความเข้าใจเกี่ยวกับผลกระทบของควันต่อปอดในระดับใด?
+      </h2>
+
+      <label class="option">
+        <input type="radio" name="q5" value="น้อยมาก">
+        น้อยมาก
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="น้อย">
+        น้อย
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="ปานกลาง">
+        ปานกลาง
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="มาก">
+        มาก
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="มากที่สุด">
+        มากที่สุด
+      </label>
+
+    </div>
+
+
+    <!-- Q6 -->
+    <div class="question">
+
+      <div class="number">06</div>
+
+      <h2>
+        คุณเคยเห็นหรือมีประสบการณ์กับนิทรรศการ Interactive
+        ที่ตอบสนองต่อการเคลื่อนไหวหรือการกระทำของผู้ชมหรือไม่?
+      </h2>
+
+      <label class="option">
+        <input type="radio" name="q6" value="เคย">
+        เคย
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q6" value="ไม่เคย">
+        ไม่เคย
+      </label>
+
+    </div>
+
+
+    <!-- Q7 -->
+    <div class="question">
+
+      <div class="number">07</div>
+
+      <h2>
+        สิ่งที่คุณคาดหวังจากนิทรรศการนี้มากที่สุดคืออะไร?
+      </h2>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q7"
+          value="ได้รับความรู้ใหม่"
+        >
+        ได้รับความรู้ใหม่
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q7"
+          value="ได้รับประสบการณ์ที่น่าสนใจ"
+        >
+        ได้รับประสบการณ์ที่น่าสนใจ
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q7"
+          value="ได้ทดลองระบบ Interactive"
+        >
+        ได้ทดลองระบบ Interactive
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q7"
+          value="ตระหนักถึงผลกระทบของควันต่อสุขภาพ"
+        >
+        ตระหนักถึงผลกระทบของควันต่อสุขภาพ
+      </label>
+
+    </div>
+
+
+    <button type="submit" class="submit">
+      SUBMIT PRE-TEST
+    </button>
+
+  </form>
+
+
+  <div id="result">
+    ขอบคุณสำหรับการทำแบบประเมิน<br>
+    สามารถเข้าสู่นิทรรศการได้เลย
   </div>
-
-</section>
-
-
-<!-- =========================
-     ส่วนที่ 2
-========================= -->
-
-<section class="card">
-
-  <h2>
-    ส่วนที่ 2 · ความรู้และความเข้าใจก่อนเข้าชม
-  </h2>
-
-
-  <!-- Q2 -->
-
-  <div class="question">
-
-    <p class="q-title">
-      2. คุณคิดว่าควันบุหรี่มีผลต่อระบบทางเดินหายใจหรือไม่?
-    </p>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q2"
-        value="yes"
-      >
-      มีผล
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q2"
-        value="no"
-      >
-      ไม่มีผล
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q2"
-        value="unknown"
-      >
-      ไม่แน่ใจ
-    </label>
-
-  </div>
-
-
-  <!-- Q3 -->
-
-  <div class="question">
-
-    <p class="q-title">
-      3. ส่วนใดของปอดเป็นบริเวณสำคัญในการแลกเปลี่ยนก๊าซออกซิเจนและคาร์บอนไดออกไซด์?
-    </p>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q3"
-        value="alveoli"
-      >
-      ถุงลมปอด (Alveoli)
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q3"
-        value="trachea"
-      >
-      หลอดลมคอ (Trachea)
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q3"
-        value="diaphragm"
-      >
-      กะบังลม (Diaphragm)
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q3"
-        value="unknown"
-      >
-      ไม่แน่ใจ
-    </label>
-
-  </div>
-
-
-  <!-- Q4 -->
-
-  <div class="question">
-
-    <p class="q-title">
-      4. คุณคิดว่าบุหรี่ไฟฟ้าสามารถส่งผลกระทบต่อสุขภาพปอดได้หรือไม่?
-    </p>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q4"
-        value="yes"
-      >
-      ได้
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q4"
-        value="no"
-      >
-      ไม่ได้
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q4"
-        value="unknown"
-      >
-      ไม่แน่ใจ
-    </label>
-
-  </div>
-
-
-  <!-- Q5 -->
-
-  <div class="question">
-
-    <p class="q-title">
-      5. ก่อนเข้าชมนิทรรศการ คุณมีความเข้าใจเกี่ยวกับผลกระทบของควันต่อปอดในระดับใด?
-    </p>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q5"
-        value="1"
-      >
-      น้อยมาก
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q5"
-        value="2"
-      >
-      น้อย
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q5"
-        value="3"
-      >
-      ปานกลาง
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q5"
-        value="4"
-      >
-      มาก
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q5"
-        value="5"
-      >
-      มากที่สุด
-    </label>
-
-  </div>
-
-
-  <!-- Q6 -->
-
-  <div class="question">
-
-    <p class="q-title">
-      6. คุณเคยเห็นหรือมีประสบการณ์กับนิทรรศการ Interactive ที่ตอบสนองต่อการเคลื่อนไหวหรือการกระทำของผู้ชมหรือไม่?
-    </p>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q6"
-        value="yes"
-      >
-      เคย
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q6"
-        value="no"
-      >
-      ไม่เคย
-    </label>
-
-  </div>
-
-
-  <!-- Q7 -->
-
-  <div class="question">
-
-    <p class="q-title">
-      7. สิ่งที่คุณคาดหวังจากนิทรรศการนี้มากที่สุดคืออะไร?
-    </p>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q7"
-        value="knowledge"
-      >
-      ได้รับความรู้ใหม่
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q7"
-        value="experience"
-      >
-      ได้รับประสบการณ์ที่น่าสนใจ
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q7"
-        value="interactive"
-      >
-      ได้ทดลองระบบ Interactive
-    </label>
-
-    <label class="option">
-      <input
-        type="radio"
-        name="q7"
-        value="awareness"
-      >
-      ตระหนักถึงผลกระทบของควันต่อสุขภาพ
-    </label>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SUBMIT
-========================= -->
-
-<button
-  class="submit"
-  type="submit"
->
-  SUBMIT PRE-TEST
-</button>
-
-<p class="note">
-  แบบสอบถามนี้ใช้สำหรับเก็บข้อมูลก่อนเข้าชมนิทรรศการ
-</p>
-
-<div id="result">
-  ขอบคุณสำหรับการตอบแบบสอบถาม<br>
-  กรุณาเข้าสู่ขั้นตอนการชมนิทรรศการ
-</div>
-
-</form>
 
 </div>
-</main>
 
 
 <script>
-
-/* =========================================
-   GOOGLE APPS SCRIPT
-   PRE-TEST → SHEET2
-========================================= */
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbzO1Sr0blENOOak0A4Fssh4oCX2o25A0sn4gCNAUsB39xP9QM5Bo99cR8MwvzpShWnTYA/exec";
 
 
-/* =========================================
-   SUBMIT FORM
-========================================= */
-
 document
-.getElementById("pretest")
-.addEventListener("submit", async function(e){
+  .getElementById("pretest")
+  .addEventListener("submit", async function(e){
 
-  e.preventDefault();
-
-
-  /* ตรวจว่าตอบครบทุกข้อ */
-
-  const required = [
-    "age",
-    "q2",
-    "q3",
-    "q4",
-    "q5",
-    "q6",
-    "q7"
-  ];
+    e.preventDefault();
 
 
-  const complete = required.every(function(name){
+    /* ตรวจว่าตอบครบทุกข้อ */
 
-    return document.querySelector(
-      'input[name="' + name + '"]:checked'
-    );
+    const required = [
+      "age",
+      "q2",
+      "q3",
+      "q4",
+      "q5",
+      "q6",
+      "q7"
+    ];
+
+
+    const complete = required.every(function(name){
+
+      return document.querySelector(
+        'input[name="' + name + '"]:checked'
+      );
+
+    });
+
+
+    if(!complete){
+
+      alert(
+        "กรุณาตอบคำถามให้ครบทุกข้อก่อนส่งแบบสอบถาม"
+      );
+
+      return;
+
+    }
+
+
+    /* เก็บคำตอบ */
+
+    const data = {
+
+      age:
+        document.querySelector(
+          'input[name="age"]:checked'
+        ).value,
+
+      q2:
+        document.querySelector(
+          'input[name="q2"]:checked'
+        ).value,
+
+      q3:
+        document.querySelector(
+          'input[name="q3"]:checked'
+        ).value,
+
+      q4:
+        document.querySelector(
+          'input[name="q4"]:checked'
+        ).value,
+
+      q5:
+        document.querySelector(
+          'input[name="q5"]:checked'
+        ).value,
+
+      q6:
+        document.querySelector(
+          'input[name="q6"]:checked'
+        ).value,
+
+      q7:
+        document.querySelector(
+          'input[name="q7"]:checked'
+        ).value
+
+    };
+
+
+    const submitButton =
+      document.querySelector(".submit");
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent = "SENDING...";
+
+
+    try{
+
+      await fetch(
+        SCRIPT_URL,
+        {
+          method:"POST",
+
+          mode:"no-cors",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify(data)
+        }
+      );
+
+
+      document
+        .getElementById("result")
+        .style.display = "block";
+
+
+      document
+        .getElementById("result")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+
+      submitButton.textContent =
+        "THANK YOU ^-^";
+
+
+    }catch(error){
+
+      console.error(error);
+
+      alert(
+        "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง"
+      );
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        "SUBMIT PRE-TEST";
+
+    }
 
   });
-
-
-  if(!complete){
-
-    alert(
-      "กรุณาตอบคำถามให้ครบทุกข้อก่อนส่งแบบสอบถาม"
-    );
-
-    return;
-
-  }
-
-
-  /* เก็บข้อมูลจากแบบสอบถาม */
-
-  const data = {
-
-    age:
-      document.querySelector(
-        'input[name="age"]:checked'
-      ).value,
-
-    q2:
-      document.querySelector(
-        'input[name="q2"]:checked'
-      ).value,
-
-    q3:
-      document.querySelector(
-        'input[name="q3"]:checked'
-      ).value,
-
-    q4:
-      document.querySelector(
-        'input[name="q4"]:checked'
-      ).value,
-
-    q5:
-      document.querySelector(
-        'input[name="q5"]:checked'
-      ).value,
-
-    q6:
-      document.querySelector(
-        'input[name="q6"]:checked'
-      ).value,
-
-    q7:
-      document.querySelector(
-        'input[name="q7"]:checked'
-      ).value
-
-  };
-
-
-  /* ป้องกันการกด Submit ซ้ำ */
-
-  const submitButton =
-    document.querySelector(".submit");
-
-  submitButton.disabled = true;
-
-  submitButton.textContent = "SENDING...";
-
-
-  /* ส่งข้อมูลไป Google Sheets */
-
-  try{
-
-    await fetch(
-      SCRIPT_URL,
-      {
-        method:"POST",
-
-        mode:"no-cors",
-
-        headers:{
-          "Content-Type":
-            "text/plain;charset=utf-8"
-        },
-
-        body:JSON.stringify(data)
-      }
-    );
-
-
-    /* แสดงข้อความสำเร็จ */
-
-    document
-      .getElementById("result")
-      .style.display = "block";
-
-
-    document
-      .getElementById("result")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-
-    submitButton.textContent =
-      "THANK YOU ^-^";
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง"
-    );
-
-
-    submitButton.disabled = false;
-
-    submitButton.textContent =
-      "SUBMIT PRE-TEST";
-
-  }
-
-});
 
 </script>
 
