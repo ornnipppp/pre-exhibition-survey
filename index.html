@@ -1,58 +1,164 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOGIN | Visualizing the Invisible</title>
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;padding:24px;
-  display:flex;align-items:center;justify-content:center;
-  background:#050505;color:white;
-  font-family:Arial,sans-serif
-}
-main{
-  width:100%;max-width:420px;
-  padding:30px;border:1px solid #555;border-radius:12px;
-  background:#101010
-}
-h1{color:#9ee9e9;font-size:30px}
-p{line-height:1.8;color:#ccc}
-label{display:block;margin:20px 0 8px}
-input{
-  width:100%;padding:14px;border-radius:6px;
-  border:1px solid #777;background:#222;color:white;
-  font-size:16px
-}
-button{
-  width:100%;margin-top:20px;padding:15px;
-  border:0;border-radius:6px;background:#eaffff;
-  font-size:15px;font-weight:bold
-}
-#message{color:#9ee9e9;line-height:1.7}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN | Visualizing the Invisible</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050505;
+      color: #fff;
+      font-family: "Prompt", sans-serif;
+    }
+    .container {
+      width: 100%;
+      max-width: 440px;
+      padding: 32px 26px;
+      border: 1px solid rgba(158, 233, 233, 0.35);
+      border-radius: 12px;
+      background: rgba(10, 15, 17, 0.96);
+    }
+    .kicker {
+      color: #9ee9e9;
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 42px;
+      letter-spacing: 2px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .intro {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 28px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 9px;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      background: #111;
+      color: #fff;
+      font-family: inherit;
+      font-size: 16px;
+    }
+    input:focus {
+      outline: 2px solid #9ee9e9;
+      border-color: #9ee9e9;
+    }
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      border: 0;
+      border-radius: 6px;
+      background: #eaffff;
+      color: #000;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.6;
+    }
+    #message {
+      margin-top: 16px;
+      color: #9ee9e9;
+      font-size: 13px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: #888;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+  </style>
 </head>
 <body>
-<main>
-<h1>VISUALIZING THE INVISIBLE</h1>
-<p>กรุณากรอกอีเมลเพื่อเริ่มทำแบบทดสอบก่อนเข้าชมนิทรรศการ</p>
-<form id="loginForm">
-<label for="email">อีเมล</label>
-<input id="email" type="email" required
-placeholder="example@email.com" autocomplete="email">
-<button type="submit">CONTINUE</button>
-</form>
-<p id="message"></p>
-</main>
-<script>
-document.getElementById("loginForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  const email=document.getElementById("email").value.trim().toLowerCase();
-  if(!email)return;
-  localStorage.setItem("exhibitionEmail",email);
-  window.location.href="./index.html";
-});
-</script>
+  <main class="container">
+    <p class="kicker">PRE-EXHIBITION</p>
+    <h1>VISUALIZING<br>THE INVISIBLE</h1>
+    <p class="intro">
+      กรุณากรอกอีเมลเพื่อเริ่มทำแบบทดสอบก่อนเข้าชมนิทรรศการ
+      <br>
+      ระบบจะใช้อีเมลนี้เชื่อมโยงคำตอบของคุณ
+    </p>
+    <form id="loginForm">
+      <label for="email">อีเมลของคุณ</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="example@email.com"
+        autocomplete="email"
+        required
+      >
+      <button id="continueBtn" type="submit">
+        CONTINUE →
+      </button>
+    </form>
+    <p id="message" role="status" aria-live="polite"></p>
+    <p class="footer">AN INTERACTIVE EXPERIENCE</p>
+  </main>
+  <script>
+    (function () {
+      const form = document.getElementById("loginForm");
+      const emailInput = document.getElementById("email");
+      const button = document.getElementById("continueBtn");
+      const message = document.getElementById("message");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const email = emailInput.value.trim().toLowerCase();
+        if (!emailInput.checkValidity() || !email) {
+          message.textContent = "กรุณากรอกอีเมลให้ถูกต้อง";
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "PLEASE WAIT...";
+        message.textContent = "กำลังบันทึกอีเมล...";
+        try {
+          localStorage.setItem("exhibitionEmail", email);
+          const savedEmail = localStorage.getItem("exhibitionEmail");
+          if (savedEmail !== email) {
+            throw new Error("Email could not be saved");
+          }
+          message.textContent = "บันทึกอีเมลแล้ว กำลังไปหน้าแบบทดสอบ...";
+          window.location.href = "./index.html";
+        } catch (error) {
+          message.textContent =
+            "ไม่สามารถบันทึกอีเมลได้ กรุณาเปิดเว็บไซต์ผ่าน Safari แล้วลองอีกครั้ง";
+          button.disabled = false;
+          button.textContent = "CONTINUE →";
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
